@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
@@ -54,6 +54,7 @@ services:
       - ./kapacitor/data/:/var/lib/kapacitor
       # Mount for kapacitor configuration
       - ./kapacitor/config/:/etc/kapacitor/
+      - ./kapacitor/stream/:/usr/src/
     # Kapacitor requires network access to Influxdb
     links:
       - influxdb
@@ -86,8 +87,8 @@ services:
       - influxdb
       - telegraf
 
-  documentation:
-    build:
-      context: ./documentation
-    ports:
-      - "3010:3000"
+        #  documentation:
+        #    build:
+        #      context: ./documentation
+        #    ports:
+        #      - "3010:3000"
